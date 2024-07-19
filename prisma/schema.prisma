@@ -36,3 +36,10 @@ model Department {
   name      String     @unique
   employees Employee[]
 }
+
+model Authentic{
+  id        String        @id @default(uuid())
+  username  String        @unique
+  password  String
+  email     String
+}
