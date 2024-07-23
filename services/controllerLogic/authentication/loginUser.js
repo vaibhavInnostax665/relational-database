@@ -19,7 +19,6 @@ if(!User){
 const matching = await bcrypt.compare(password,User.password);
 
 if(matching){
-  
     const token = await jwt.sign({id:User.id},process.env.JWT_SECRET,{expiresIn:"1d"});
 data = {"token":token};
 message= "Logged in";

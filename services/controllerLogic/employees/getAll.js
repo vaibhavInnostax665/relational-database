@@ -8,7 +8,7 @@ const getAll = async(details)=>{
             user:true
         }
     });
-    return {"data":Users,"message":"Data of all users", status:200};
+    return {"data":Users,"message":"Data of all employees", status:200};
 }
 
 export default getAll;
