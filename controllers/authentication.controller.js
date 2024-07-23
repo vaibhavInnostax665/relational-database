@@ -27,10 +27,13 @@ export const signupController = async (req, res) => {
     try {
 
       const result = await loginUser(req.body);
-      return res.cookie({"token":(result.data.token?result.data.token:null)}).status(result.status).json({
-        message: result.message,
-        data: result.data,
-      });
+      return res
+  .cookie("token", result.data.token || null)
+  .status(result.status)
+  .json({
+    message: result.message,
+    data: result.data,
+  });
     } catch {
       return res.status(catchResult.status).json({
           message: catchResult.message,

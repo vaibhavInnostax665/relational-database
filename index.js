@@ -8,6 +8,7 @@ import departmentRoutes from "./routes/department/department.routes.js";
 import authenticationRoutes from "./routes/authentication/auth.route.js";
 import rabbitMqRoutes from "./routes/rabbitMq/product.route.js";
 import auth from "./middlewares/authentication/auth.js";
+import cookieParser from "cookie-parser";
 
 
 const app = express();
@@ -29,7 +30,7 @@ const PORT = process.env.PORT;
 console.log(process.env.DATABASE_URL);
 
 
-
+app.use(cookieParser());
 app.use(express.json());
 app.use("/users",auth,userRoutes);
 app.use("/employees",auth,employeeRoutes);
