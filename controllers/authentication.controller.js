@@ -25,7 +25,6 @@ export const signupController = async (req, res) => {
 
   export const loginController = async (req, res) => {
     try {
-
       const result = await loginUser(req.body);
       return res
   .cookie("token", result.data.token || null)
@@ -41,3 +40,8 @@ export const signupController = async (req, res) => {
         });
     }
   };
+
+  export const logoutController = (req,res)=>{
+    return res.clearCookie('token').send("user logged out").status(200);
+
+  }
