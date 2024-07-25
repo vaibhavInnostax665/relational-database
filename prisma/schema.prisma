@@ -1,53 +1,46 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-   url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id                String       @id @default(uuid())
+  id                String   @id @default(uuid())
+  email             String
+  empId             String   @unique
   name              String
   phone             String?
-  email             String
-  employmentDetails Employee? @relation(fields: [empId], references: [id] ,  onDelete: Cascade, onUpdate: Cascade)
-  empId             String      @unique
+  employmentDetails Employee @relation(fields: [empId], references: [id], onDelete: Cascade)
 }
 
 model Employee {
-  id         String         @id @default(uuid())
+  depId      String
+  id         String     @id @default(uuid())
   type       String
   salary     Int
+  department Department @relation(fields: [depId], references: [id], onDelete: Cascade)
   user       User?
-  depId      String
-  department Department? @relation(fields: [depId], references: [id],  onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Department {
-  id        String        @id @default(uuid())
+  id        String     @id @default(uuid())
   name      String     @unique
   employees Employee[]
 }
 
-model Authentic{
-  id        String        @id @default(uuid())
-  username  String        @unique
-  password  String
-  email     String
+model Authentic {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+  email    String
 }
 
-model Product{
-   id        String        @id @default(uuid())
-  name String
-  price Int
+model Product {
+  id          String  @id @default(uuid())
+  name        String
+  price       Int
   description String?
 }

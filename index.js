@@ -22,9 +22,9 @@ const fileName = process.env.NODE_ENV.trim(" ");
 console.log(`.${fileName}.env`);
 
 dotenv.config({
-    path: `${__dirname}/.env.${fileName}`
+    path: `${__dirname}/.${fileName}.env`
 });
-console.log(`${__dirname}/.env.${fileName}`);
+console.log(`${__dirname}/.${fileName}.env`);
 const PORT = process.env.PORT;
 
 console.log(process.env.DATABASE_URL);
